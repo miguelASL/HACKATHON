@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name ="usuario")
+@Table(name ="usuarios")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,21 +18,19 @@ public class Usuario {
 
     @Column(name = "nombre")
     private String name;
-    @ElementCollection
+/*    @ElementCollection
     @Column(name = "tipo")
-    private List<String> types;
-    /*
+    private List<String> types;*/
     @Column(name = "tipo")
     private String type;
-     */
 
     @Column(name = "precio")
     private float price;
 
-    @ElementCollection
-    //@Column(name = "color")
-    private List<String> color;
-
+/*    @ElementCollection
+    /@Column(name = "color")
+    private List<String> color;*/
+    private String color;
     @Column(name = "es_gratis")
     private boolean isFree;
 
@@ -41,10 +39,10 @@ public class Usuario {
         return "Usuario{" +
                 "id=" + id +
                 ", nombre='" + name + '\'' +
-                ", tipo=" + types +
+                ", tipo='" + type + '\'' +
                 ", precio=" + price +
-                ", color=" + color +
-                ", es gratis=" + isFree +
+                ", color='" + color + '\'' +
+                ", Es gratis?=" + isFree +
                 '}';
     }
 }
