@@ -44,4 +44,7 @@ public class Usuario {
                 ", Es gratis? -> " + isFree +
                 '}';
     }
+
+    public void setColor(String newColor) {
+    }
 }

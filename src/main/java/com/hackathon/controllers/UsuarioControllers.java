@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/skins")
@@ -20,23 +20,54 @@ public class UsuarioControllers {
     private Repositorio repositorio;
 
     @GetMapping("/available")
-    public ResponseEntity<String> getAvailableSkins() {
-        LOGGER.info("Obteniendo la lista de las skins disponibles");
+    public ResponseEntity<List<Usuario>> getAvailableSkins() {
         List<Usuario> availableSkins = repositorio.findAll();
+        return new ResponseEntity<>(availableSkins, HttpStatus.OK);
+    }
 
-        if (availableSkins.isEmpty()) {
-            LOGGER.info("No hay skins disponibles");
-            return new ResponseEntity<>("No hay skins disponibles", HttpStatus.NOT_FOUND);
+    @PostMapping("/buy")
+    public ResponseEntity<?> buySkin(@RequestBody Usuario skin) {
+        Usuario savedSkin = repositorio.save(skin);
+        return new ResponseEntity<>("Skin comprada con éxito", HttpStatus.CREATED);
+    }
+
+    @GetMapping("/myskins")
+    public ResponseEntity<List<Usuario>> getMySkins() {
+        List<Usuario> mySkins = repositorio.findAll();
+        return new ResponseEntity<>(mySkins, HttpStatus.OK);
+    }
+
+    @PutMapping("/skins/color/{id}")
+    public ResponseEntity<?> changeSkinColor(@PathVariable Integer id, @RequestParam String newColor) {
+        Optional<Usuario> optionalSkin = repositorio.findById(id);
+        if (optionalSkin.isPresent()) {
+            Usuario skin = optionalSkin.get();
+            skin.setColor(newColor);
+            repositorio.save(skin);
+            return new ResponseEntity<>("Color de skin actualizado con éxito", HttpStatus.OK);
         } else {
-            int numSkins = availableSkins.size();
-            LOGGER.info("Número de skins disponibles: " + numSkins);
-            return new ResponseEntity<>("Número de skins disponibles: " + numSkins, HttpStatus.OK);
+            return new ResponseEntity<>("Skin no encontrada", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteSkin(@PathVariable Integer id) {
+        Optional<Usuario> skin = repositorio.findById(id);
+        if (skin.isPresent()) {
+            repositorio.delete(skin);
+            return new ResponseEntity<>("Skin eliminada con éxito", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Skin no encontrada", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/getskin/{id}")
+    public ResponseEntity<?> getSkinById(@PathVariable Integer id) {
+        Optional<Usuario> skin = repositorio.findById(id);
+        if (skin.isPresent()) {
+            return new ResponseEntity<>(skin, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Skin no encontrada", HttpStatus.NOT_FOUND);
         }
     }
 }
-
-
-
-
-
-
