@@ -2,6 +2,7 @@ package com.hackathon.controllers;
 
 import com.hackathon.model.Usuario;
 import com.hackathon.repository.Repositorio;
+import com.hackathon.service.SkinService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class UsuarioController {
 
     @Autowired
     private Repositorio repositorio;
+
+    @Autowired
+    private SkinService skinService;
 
     @GetMapping("/available")
     public ResponseEntity<List<Usuario>> getAvailableSkins() {
@@ -68,6 +72,16 @@ public class UsuarioController {
             return ResponseEntity.ok(skin);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Skin no encontrada");
+        }
+    }
+
+    @GetMapping("/loadSkins")
+    public ResponseEntity<List<Usuario>> loadSkins() {
+        List<Usuario> skins = skinService.readSkinsFromJsonFile("ruta/al/archivo.json");
+        if (skins != null) {
+            return ResponseEntity.ok(skins);
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 }

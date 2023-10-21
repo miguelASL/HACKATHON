@@ -16,8 +16,6 @@ public class SkinService {
             List<Usuario> skins = objectMapper.readValue(new File(jsonFilePath), new TypeReference<List<Usuario>>() {});
             return skins;
         } catch (IOException e) {
-            // Manejo de excepciones, por ejemplo, lanzar una excepción personalizada
-            // o registrar el error.
             e.printStackTrace();
             return null;
         }
