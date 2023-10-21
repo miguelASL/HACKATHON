@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  hackathon:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hackathon_lombok
+    restart: always
