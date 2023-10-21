@@ -1,14 +1,8 @@
 package com.hackathon.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name ="usuarios")
 public class Usuario {
     @Id
@@ -17,21 +11,62 @@ public class Usuario {
 
     @Column(name = "nombre")
     private String name;
-/*    @ElementCollection
-    @Column(name = "tipo")
-    private List<String> types;*/
     @Column(name = "tipo")
     private String type;
 
     @Column(name = "precio")
     private float price;
-
-/*    @ElementCollection
-    /@Column(name = "color")
-    private List<String> color;*/
     private String color;
     @Column(name = "es_gratis")
     private boolean isFree;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public boolean isFree() {
+        return isFree;
+    }
+
+    public void setFree(boolean free) {
+        isFree = free;
+    }
 
     @Override
     public String toString() {
@@ -43,9 +78,5 @@ public class Usuario {
                 ", color=" + color + '\'' +
                 ", Es gratis? -> " + isFree +
                 '}';
-    }
-
-    public void setColor(String newColor) {
-        this.color = newColor;
     }
 }

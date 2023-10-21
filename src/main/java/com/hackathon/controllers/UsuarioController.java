@@ -19,14 +19,18 @@ public class UsuarioController {
 
     @Autowired
     private Repositorio repositorio;
-
     @Autowired
     private SkinService skinService;
 
     @GetMapping("/available")
-    public ResponseEntity<List<Usuario>> getAvailableSkins() {
+    public ResponseEntity<?> getAvailableSkins() {
         List<Usuario> availableSkins = repositorio.findAll();
-        return ResponseEntity.ok(availableSkins);
+
+        if (availableSkins.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No hay skin disponibles");
+        } else {
+            return ResponseEntity.ok(availableSkins.get(0));
+        }
     }
 
     @PostMapping("/buy")
@@ -41,9 +45,8 @@ public class UsuarioController {
         return ResponseEntity.ok(mySkins);
     }
 
-    @PutMapping("/color/{id}")
-    public ResponseEntity<String> changeSkinColor(@PathVariable Integer id, @RequestParam String newColor) {
-        Optional<Usuario> optionalSkin = repositorio.findById(id);
+/*    @PutMapping("/color")
+    public ResponseEntity<String> changeSkinColor(@RequestParam String newColor, Usuario usuario) {
         if (optionalSkin.isPresent()) {
             Usuario skin = optionalSkin.get();
             skin.setColor(newColor);
@@ -52,9 +55,9 @@ public class UsuarioController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Skin no encontrada");
         }
-    }
+    }*/
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteSkin(@PathVariable Integer id) {
         Optional<Usuario> skin = repositorio.findById(id);
         if (skin.isPresent()) {
@@ -65,7 +68,7 @@ public class UsuarioController {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getskin/{id}")
     public ResponseEntity<?> getSkinById(@PathVariable Integer id) {
         Optional<Usuario> skin = repositorio.findById(id);
         if (skin.isPresent()) {
@@ -77,7 +80,7 @@ public class UsuarioController {
 
     @GetMapping("/loadSkins")
     public ResponseEntity<List<Usuario>> loadSkins() {
-        List<Usuario> skins = skinService.readSkinsFromJsonFile("ruta/al/archivo.json");
+        List<Usuario> skins = skinService.readSkinsFromJsonFile("SkinService.java");
         if (skins != null) {
             return ResponseEntity.ok(skins);
         } else {
