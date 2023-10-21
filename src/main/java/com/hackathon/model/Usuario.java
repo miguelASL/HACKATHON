@@ -46,5 +46,6 @@ public class Usuario {
     }
 
     public void setColor(String newColor) {
+        this.color = newColor;
     }
 }
