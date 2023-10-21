@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Definir una nueva configuración para el paquete com.hackathon.controllers -->
+    <logger name="com.hackathon.controllers" level="DEBUG" />
+
+    <!-- Configuración predeterminada para otros loggers -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>

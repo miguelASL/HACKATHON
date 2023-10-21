@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.List;
 
 @Entity
 @Data
@@ -38,11 +37,11 @@ public class Usuario {
     public String toString() {
         return "Usuario{" +
                 "id=" + id +
-                ", nombre='" + name + '\'' +
-                ", tipo='" + type + '\'' +
+                ", nombre=" + name + '\'' +
+                ", tipo=" + type + '\'' +
                 ", precio=" + price +
-                ", color='" + color + '\'' +
-                ", Es gratis?=" + isFree +
+                ", color=" + color + '\'' +
+                ", Es gratis? -> " + isFree +
                 '}';
     }
 }
