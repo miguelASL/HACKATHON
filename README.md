@@ -59,4 +59,4 @@ Si deseas descargar este proyecto para explorarlo o contribuir, sigue estos paso
 
 - Autor: MIguel Ángel Sarmiento Levy
 - Email: capitanmigue@hotmail.com
-- Proyecto: https://github.com/miguelASL/HACKATHON
+- Proyecto: https://github.com/miguelASL/HACKATHON-.git
