@@ -45,8 +45,9 @@ public class UsuarioController {
         return ResponseEntity.ok(mySkins);
     }
 
-/*    @PutMapping("/color")
-    public ResponseEntity<String> changeSkinColor(@RequestParam String newColor, Usuario usuario) {
+    @PutMapping("/color/{id}")
+    public ResponseEntity<String> changeSkinColor(@PathVariable Integer id, @RequestParam String newColor) {
+        Optional<Usuario> optionalSkin = repositorio.findById(id);
         if (optionalSkin.isPresent()) {
             Usuario skin = optionalSkin.get();
             skin.setColor(newColor);
@@ -55,7 +56,7 @@ public class UsuarioController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Skin no encontrada");
         }
-    }*/
+    }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteSkin(@PathVariable Integer id) {

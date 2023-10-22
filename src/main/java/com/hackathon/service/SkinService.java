@@ -14,18 +14,15 @@ public class SkinService {
     private Repositorio repositorio;
 
     public List<Usuario> obtenerSkinsDisponibles() {
-        // Lógica para obtener todas las skins disponibles desde la base de datos
         return repositorio.findAll();
     }
 
     public Usuario comprarSkin(Usuario skin) {
-        // Lógica para validar y guardar la skin comprada en la base de datos
         return repositorio.save(skin);
     }
 
     public List<Usuario> obtenerSkinsDelUsuario() {
-        // Lógica para obtener las skins compradas por el usuario actual (puedes agregar la lógica de autenticación aquí)
-        return repositorio.findAll(); // Puedes ajustar esta lógica según tus necesidades
+        return repositorio.findAll();
     }
 
     public String cambiarColorSkin(Integer id, String newColor) {
@@ -55,7 +52,6 @@ public class SkinService {
     }
 
     public List<Usuario> readSkinsFromJsonFile(String fileName) {
-        // Lógica para leer skins desde un archivo JSON (puedes implementar esta funcionalidad)
         return null;
     }
 }
