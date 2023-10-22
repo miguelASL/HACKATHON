@@ -8,5 +8,4 @@ import java.util.List;
 
 @Repository
 public interface Repositorio extends JpaRepository<Usuario, Integer> {
-    //List<Usuario> obtenerSkinsDisponibles();
 }

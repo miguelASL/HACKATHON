@@ -2,7 +2,7 @@ package com.hackathon.controllers;
 
 import com.hackathon.model.Usuario;
 import com.hackathon.repository.Repositorio;
-import com.hackathon.service.SkinService;
+import com.hackathon.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +81,7 @@ public class UsuarioController {
 
     @GetMapping("/loadSkins")
     public ResponseEntity<List<Usuario>> loadSkins() {
-        List<Usuario> skins = skinService.readSkinsFromJsonFile("SkinService.java");
+        List<Usuario> skins = skinService.readSkinsFromJsonFile("classpath:skins.json");
         if (skins != null) {
             return ResponseEntity.ok(skins);
         } else {

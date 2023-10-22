@@ -1,9 +1,15 @@
 package com.hackathon.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hackathon.model.Usuario;
 import com.hackathon.repository.Repositorio;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.fasterxml.jackson.core.type.TypeReference;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +18,8 @@ public class SkinService {
 
     @Autowired
     private Repositorio repositorio;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SkinService.class);
 
     public List<Usuario> obtenerSkinsDisponibles() {
         return repositorio.findAll();
@@ -52,6 +60,13 @@ public class SkinService {
     }
 
     public List<Usuario> readSkinsFromJsonFile(String fileName) {
-        return null;
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<Usuario> skins = objectMapper.readValue(new File(fileName), new TypeReference<List<Usuario>>() {});
+            return skins;
+        } catch (IOException e) {
+            LOGGER.error("Error al leer skins desde el archivo JSON", e);
+            return null;
+        }
     }
 }
