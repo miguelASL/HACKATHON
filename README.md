@@ -18,7 +18,7 @@ Antes de comenzar, asegúrate de tener lo siguiente:
     - GET /skins/available: Devuelve una lista de todas las skins disponibles para comprar.
     - POST /skins/buy: Permite a los usuarios adquirir una skin y la guarda en la base de datos.
     - GET /skins/myskins: Devuelve una lista de las skins compradas por el usuario.
-    - PUT /skins/color: Permite a los usuarios cambiar el color de una skin comprada.
+    - PUT /skins/color/{id}: Permite a los usuarios cambiar el color de una skin comprada.
     - DELETE /skins/delete/{id}: Permite a los usuarios eliminar una skin comprada.
     - GET /skin/getskin/{id}: Devuelve una skin específica por su ID.
 
