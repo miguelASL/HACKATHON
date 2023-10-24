@@ -1,4 +1,4 @@
-/*package com.hackathon.config;
+package com.hackathon.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -10,7 +10,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-@ComponentScan(basePackages = "com.hackathon.controllers") // Reemplaza con el paquete real de tus controladores
+@ComponentScan(basePackages ="com.hackathon.controllers")
 public class SwaggerConfig {
     @Bean
     public Docket api() {
@@ -19,7 +19,7 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.hackathon.controllers"))
                 .build();
     }
-}*/
+}
 
 //http://localhost:8080/swagger-ui/
 //http://localhost:8080/v3/api-docs/
