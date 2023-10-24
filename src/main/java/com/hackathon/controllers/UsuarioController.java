@@ -60,7 +60,7 @@ public class UsuarioController {
     @PutMapping("/color/{id}")
     @ApiOperation("Cambiar el color de una skin comprada")
     public ResponseEntity<String> changeSkinColor(@PathVariable Integer id, @RequestParam String newColor) {
-        LOGGER.info("Solicitud para cambiar el color de una skin comprada")
+        LOGGER.info("Solicitud para cambiar el color de una skin comprada");
         Optional<Usuario> optionalSkin = repositorio.findById(id);
         if (optionalSkin.isPresent()) {
             Usuario skin = optionalSkin.get();
@@ -103,7 +103,7 @@ public class UsuarioController {
         }
     }
 
-    @GetMapping("/loadSkins")
+    /*@GetMapping("/loadSkins")
     @ApiOperation("Cargar skins desde un archivo JSON")
     public ResponseEntity<List<Usuario>> loadSkins() {
         LOGGER.info("Solicitud para cargar skins desde un archivo JSON");
@@ -115,5 +115,5 @@ public class UsuarioController {
             LOGGER.info("Error al cargar las skins desde un archivo JSON");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
-    }
+    }*/
 }
