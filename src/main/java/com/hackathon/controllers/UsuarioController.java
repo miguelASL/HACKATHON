@@ -103,16 +103,16 @@ public class UsuarioController {
         }
     }
 
-    /*@GetMapping("/loadSkins")
+/*    @GetMapping("/loadSkins")
     @ApiOperation("Cargar skins desde un archivo JSON")
-    public ResponseEntity<List<Usuario>> loadSkins() {
+    public <Skin> ResponseEntity<List<Skin>> loadSkinsFromJson(@RequestParam String fileName) {
         LOGGER.info("Solicitud para cargar skins desde un archivo JSON");
-        List<Usuario> skins = skinService.readSkinsFromJsonFile("classpath:skins.json");
+        List<Skin> skins = skinService.readSkinsFromJsonFile(fileName);
         if (skins != null) {
             LOGGER.info("Skins cargadas con éxito desde un archivo JSON");
             return ResponseEntity.ok(skins);
         } else {
-            LOGGER.info("Error al cargar las skins desde un archivo JSON");
+            LOGGER.error("Error al cargar las skins desde un archivo JSON");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }*/

@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class SkinService {
@@ -21,7 +22,7 @@ public class SkinService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SkinService.class);
 
-    public List<Usuario> obtenerSkinsDisponibles() {
+    public List<Usuario> obtenerSkinsDisponibles(String s) {
         return repositorio.findAll();
     }
 
@@ -59,14 +60,15 @@ public class SkinService {
         return repositorio.findById(id);
     }
 
-    public List<Usuario> readSkinsFromJsonFile(String fileName) {
+/*    public <Skin> List<Skin> readSkinsFromJsonFile(String fileName) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            List<Usuario> skins = objectMapper.readValue(new File(fileName), new TypeReference<List<Usuario>>() {});
+            List<Skin> skins = objectMapper.readValue(new File(fileName), new TypeReference<List<Skin>>() {});
             return skins;
         } catch (IOException e) {
-            LOGGER.error("Error al leer skins desde el archivo JSON", e);
+            // Manejar errores, por ejemplo, registrar el error
+            e.printStackTrace();
             return null;
         }
-    }
+    }*/
 }

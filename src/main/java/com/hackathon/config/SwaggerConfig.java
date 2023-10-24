@@ -1,4 +1,4 @@
-package com.hackathon.config;
+/*package com.hackathon.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,7 +19,7 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.hackathon.controllers"))
                 .build();
     }
-}
+}*/
 
 //http://localhost:8080/swagger-ui/
 //http://localhost:8080/v3/api-docs/
