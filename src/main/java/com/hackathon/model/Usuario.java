@@ -68,7 +68,4 @@ public class Usuario {
                 ", color=" + color + '\'' +
                 '}';
     }
-    public boolean isDisponible() {
-        return false;
-    }
 }

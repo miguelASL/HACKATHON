@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -60,7 +61,7 @@ public class SkinService {
         return repositorio.findById(id);
     }
 
-/*    public <Skin> List<Skin> readSkinsFromJsonFile(String fileName) {
+    public <Skin> List<Skin> readSkinsFromJsonFile(String fileName) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             List<Skin> skins = objectMapper.readValue(new File(fileName), new TypeReference<List<Skin>>() {});
@@ -70,5 +71,5 @@ public class SkinService {
             e.printStackTrace();
             return null;
         }
-    }*/
+    }
 }

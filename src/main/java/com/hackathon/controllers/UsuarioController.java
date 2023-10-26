@@ -28,16 +28,15 @@ public class UsuarioController {
 
     @GetMapping("/available")
     @ApiOperation("Obtener la lista de skins disponibles")
-    public ResponseEntity<?> getAvailableSkins() {
-        LOGGER.info("Solicitud para obtener la lista de skins disponibles");
-        List<Usuario> availableSkins = repositorio.findAll();
-
-        if (availableSkins.isEmpty()) {
-            LOGGER.info("No hay skins disponibles");
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No hay skin disponibles");
+    public <Skin> ResponseEntity<List<Skin>> loadSkinsFromJson(@RequestParam String fileName) {
+        LOGGER.info("Solicitud para cargar skins desde un archivo JSON");
+        List<Skin> skins = skinService.readSkinsFromJsonFile(fileName);
+        if (skins != null) {
+            LOGGER.info("Skins cargadas con éxito desde un archivo JSON");
+            return ResponseEntity.ok(skins);
         } else {
-            LOGGER.info("Se ha encontrado una skin disponible");
-            return ResponseEntity.ok(availableSkins.get(0));
+            LOGGER.error("Error al cargar las skins desde un archivo JSON");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 
@@ -102,18 +101,4 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Skin no encontrada");
         }
     }
-
-/*    @GetMapping("/loadSkins")
-    @ApiOperation("Cargar skins desde un archivo JSON")
-    public <Skin> ResponseEntity<List<Skin>> loadSkinsFromJson(@RequestParam String fileName) {
-        LOGGER.info("Solicitud para cargar skins desde un archivo JSON");
-        List<Skin> skins = skinService.readSkinsFromJsonFile(fileName);
-        if (skins != null) {
-            LOGGER.info("Skins cargadas con éxito desde un archivo JSON");
-            return ResponseEntity.ok(skins);
-        } else {
-            LOGGER.error("Error al cargar las skins desde un archivo JSON");
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
-    }*/
 }

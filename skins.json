@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Son Goku",
+    "type": "Comun",
+    "price": 10.0,
+    "color": "negro",
+    "available": true
+  },
+  {
+    "id": 2,
+    "name": "Itachi",
+    "type": "Legendaria",
+    "price": 100.0,
+    "color": "Rojo",
+    "available": false
+  },
+  {
+    "id": 3,
+    "name": "Deku",
+    "type": "Comun",
+    "price": 15.0,
+    "color": "Verde",
+    "available": true
+  },
+  {
+    "id": 4,
+    "name": "Luffy",
+    "type": "Epica",
+    "price": 30.0,
+    "color": "Blanco",
+    "available": false
+  },
+  {
+    "id": 5,
+    "name": "Zoro",
+    "type": "Epica",
+    "price": 50.0,
+    "color": "Verde",
+    "available": false
+  }
+]
